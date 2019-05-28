@@ -16,12 +16,18 @@ app.get('/', (req, res) => {
   res.render('home.nj', { items })
 })
 
-app.get('/items/:id', (req, res, ) => {
+app.get('/items/:id', (req, res) => {
   //TODO: Make this a database call
   const items = require('./data/items.json')
   const { id } = req.params
   const item = items.find(item => item.id === id)
   res.render('item.nj', { item })
+})
+
+app.get('/search', (req, res) => {
+  //TODO: Make this a database call
+  const rows = require('./data/items.json')
+  res.render('search.nj', { rows })
 })
 
 module.exports = app

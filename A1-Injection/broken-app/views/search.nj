@@ -1,0 +1,33 @@
+{% extends "layout.nj" %}
+
+{% block styles %}
+    <style>
+        body {
+            padding-top: 70px;
+        } 
+    </style>
+{% endblock styles %}
+{% block content %}
+    <div class="col-lg-9 flex-grow-1">
+        <h1>Search Results</h1>
+        <table class='table'>
+            <thead>
+                <tr>
+                    {% for key, _ in rows[0]  %}
+                        <th scope="col">{{ key | upper }}</th> 
+                    {% endfor %} 
+                </tr> 
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        {% for _, val in row %}
+                            <td>{{ val }}</td> 
+                        {% endfor %} 
+                    </tr>    
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+{% endblock content %}

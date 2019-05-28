@@ -1,0 +1,10 @@
+[
+    {   
+        "id": 1,
+        "img": "http://placehold.it/700x400",
+        "name": "Item One",
+        "price": 24.99,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!",
+        "rating": 4
+    }
+]

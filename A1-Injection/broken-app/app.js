@@ -27,7 +27,18 @@ app.get('/items/:id', (req, res) => {
 app.get('/search', (req, res) => {
   //TODO: Make this a database call
   const rows = require('./data/items.json')
-  res.render('search.nj', { rows })
+  const query = req.query
+  const hasQuery = Object.keys(query).length > 0
+  if (hasQuery) {
+    let statement = `SELECT * FROM ${query.type}` 
+    if(query.filter) {
+      statement = `${statement} WHERE ${query.filter}` 
+    }
+    global.console.log(statement)
+    res.render('search.nj', { rows })
+  } else {
+    res.render('search.nj')
+  }
 })
 
 module.exports = app

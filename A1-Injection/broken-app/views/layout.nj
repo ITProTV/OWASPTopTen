@@ -11,12 +11,10 @@
   <title>Awesome E-Commerce</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="css/shop-homepage.css" rel="stylesheet">
-
-</head>
+  {% block styles %}{% endblock styles %}
+  </head>
 
 <body>
 
@@ -30,18 +28,12 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="/">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/search">Search</a>
           </li>
         </ul>
       </div>
@@ -55,7 +47,7 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">Awesome <br> E-Commerce</h1>
+        <h3 class="my-4">Awesome <br> E-Commerce</h3>
         <div class="list-group">
           <a href="#" class="list-group-item">Category 1</a>
           <a href="#" class="list-group-item">Category 2</a>
@@ -66,11 +58,7 @@
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
-
-        {% block content %}
-        
-        {% endblock content %}
-
+        {% block content %}{% endblock content %}
       </div>
       <!-- /.col-lg-9 -->
 
@@ -89,8 +77,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

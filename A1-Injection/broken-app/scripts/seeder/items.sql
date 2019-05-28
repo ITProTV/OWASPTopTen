@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS items (
     `description` VARCHAR (82) CHARACTER SET utf8,
     `rating` INT
 );
-INSERT INTO items VALUES (
-    1, 'http://placehold.it/700x400', 'Item One', 24.99, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!', 4
-);
+INSERT INTO items VALUES 
+    (1, 'http://placehold.it/700x400', 'Item One', 24.99, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!', 4);

@@ -1,0 +1,5 @@
+{% extends "layout.nj" %}
+
+{% block main %}
+    I like cheese.
+{% endblock main %}

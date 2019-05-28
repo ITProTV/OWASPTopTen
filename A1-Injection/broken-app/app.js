@@ -9,7 +9,7 @@ nunjucks.configure('views', {
 })
 
 app.get('/', (req, res) => {
-  res.send('Works')
+  res.render('home.nj')
 })
 
 module.exports = app

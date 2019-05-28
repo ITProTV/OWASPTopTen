@@ -11,10 +11,16 @@
     <div class="col-lg-9 flex-grow-1">
         <form action="/search">
             <div class="form-group">
-                <label for="search">What are you looking for?</label>
-                <input type="text" class='form-control' name='search' /> 
+                <label for="filter">What are you looking for?</label>
+                <input type="text" class='form-control' name='filter' /> 
             </div> 
+            <p>What type?</p>
+            <select name="type" class="custom-select" required>
+                <option value="items" selected>Items</option> 
+                <option value="" disabled>Future Options Coming</option>
+            </select> 
         </form>
+        <hr />
         <h1>Search Results</h1>
         <table class='table'>
             <thead>

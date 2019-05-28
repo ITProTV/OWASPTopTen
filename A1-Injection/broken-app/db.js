@@ -1,7 +1,8 @@
-const mysql = require('mysql2')
+const mysql = require('mysql')
 
-module.exports = function init({ host, user, database }) {
-  const connection = mysql.createConnection({ host, user, database })
+module.exports = function init({ host, user, database, password }) {
+  const connection = mysql.createConnection({ host, user, database, password })
+  connection.connect()
   return {
     query: statement =>
       new Promise((resolve, reject) => {

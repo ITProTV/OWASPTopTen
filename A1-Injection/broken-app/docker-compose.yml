@@ -1,0 +1,30 @@
+version: '3.1'
+services: 
+  db:
+    image: mysql:5.7
+    volumes: 
+      - ./scripts/seeder/:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: yy4YmXSqEYaqJnqY35JgnH7Ctj
+      MYSQL_USER: owasper
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: things_and_stuff
+    networks:
+      - app
+  app:
+    image: node:latest
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "./scripts/wait && npm run dev" 
+    environment: 
+      PORT: 3000
+      WAIT_HOSTS: db:3306
+    ports: 
+      - "3000:3000"
+    depends_on: 
+      - db
+    networks: 
+      - app
+networks:
+  app:

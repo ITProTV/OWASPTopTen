@@ -13,8 +13,10 @@
   "dependencies": {
     "express": "^4.17.1",
     "knex": "^0.16.5",
-    "mysql2": "^1.6.5",
-    "nunjucks": "^3.2.0"
+    "mysql": "^2.17.1",
+    "npm": "^6.9.0",
+    "nunjucks": "^3.2.0",
+    "start": "^5.1.0"
   },
   "devDependencies": {
     "dotenv": "^8.0.0",

@@ -34,14 +34,14 @@ app.get('/items/:id', (req, res, next) => {
 
 app.get('/search', (req, res, next) => {
   const query = req.query
-  const hasQuery = Object.keys(query).length > 0
-  if (hasQuery) {
-    let statement = `SELECT * FROM ${query.type}`
-    if (query.filter) {
-      statement = `${statement} WHERE 'name' LIKE '${query.filter}'`
-    }
+  if (query.search) {
+    let statement = `SELECT * FROM items item WHERE item.name LIKE '%${
+      query.search
+    }%'`
     db.query(statement).then(
-      rows => res.render('search.nj', { rows }),
+      rows => {
+        res.render('search.nj', { rows })
+      },
       err => next(err)
     )
   } else {

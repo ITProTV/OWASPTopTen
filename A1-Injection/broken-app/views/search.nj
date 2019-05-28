@@ -11,14 +11,9 @@
     <div class="col-lg-9 flex-grow-1">
         <form action="/search">
             <div class="form-group">
-                <label for="filter">What are you looking for?</label>
-                <input type="text" class='form-control' name='filter' /> 
+                <input type="text" class='form-control' name='search' placeholder='What is your request?' /> 
             </div> 
-            <p>What type?</p>
-            <select name="type" class="custom-select" required>
-                <option value="items" selected>Items</option> 
-                <option value="" disabled>Future Options Coming</option>
-            </select> 
+            <button type='submit'>Search</button>
         </form>
         <hr />
         <h1>Search Results</h1>

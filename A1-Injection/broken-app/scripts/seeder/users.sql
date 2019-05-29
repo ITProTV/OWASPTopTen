@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS users (
-    `create_card` INT,
+    `credit_card` BIGINT,
     `email` VARCHAR(32) CHARACTER SET utf8,
     `first_name` VARCHAR(11) CHARACTER SET utf8,
     `id` INT,

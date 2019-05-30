@@ -1,0 +1,9 @@
+{% extends "layout.nj" %}
+
+{% block content %}
+    <div class="row">
+        <a href="/posts">
+            <h1>Let's See Some Posts</h1> 
+        </a>
+    </div>
+{% endblock content %}

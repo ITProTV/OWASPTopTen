@@ -1,0 +1,26 @@
+{% extends "layout.nj" %}
+
+{% block content %}
+    <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-12">
+
+        <h1 class="my-4">Posts
+            <small>Gotta Get 'Em</small>
+        </h1>
+        {% for post in  posts %}
+            <div class="card mb-4">
+                <img class="card-img-top" src="{{ post.img.src }}" alt="post.img.alt">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text">{{ post.body }}</p>
+                    <a href="/posts/{{ post._id }}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+            </div>
+        {% endfor %}
+        
+    </div>
+</div>
+<!-- /.row -->
+{% endblock content %}

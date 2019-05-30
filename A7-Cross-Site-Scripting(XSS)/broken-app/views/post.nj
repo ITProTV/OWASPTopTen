@@ -1,0 +1,52 @@
+{% extends "layout.nj" %}
+
+{% block content %}
+        <!-- Title -->
+        <h1 class="mt-4">{{ post.title | upper }}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+            by
+            {{ post.author.first_name }} {{ post.author.last_name }}
+        </p>
+
+        <hr>
+
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded w-100" src="{{ post.img.src }}" alt="{{ post.img.alt }}" />
+
+        <hr>
+
+        <!-- Post Content -->
+            {% for part in post.body %}
+                <p class="lead">{{ part }}</p>
+            {% endfor %}
+
+        <hr>
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+            <h5 class="card-header">Leave a Comment:</h5>
+            <div class="card-body">
+                <form action="/posts/{{ post._id }}/comments" method="POST">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" name="body"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        {% for comment in post.comments %}
+            <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">{{ comment.author.first_name }} {{ comment.author.last_name }}</h5>
+                    {{ comment.body }} 
+                </div>
+            </div>
+        {% endfor %}
+        <!-- Single Comment -->
+        
+{% endblock content %}

@@ -1,0 +1,89 @@
+{% extends "layout.nj" %}
+
+{% block styles %}
+    <style>
+    :root {
+        --jumbotron-padding-y: 3rem;
+    }
+
+    .jumbotron {
+        padding-top: var(--jumbotron-padding-y);
+        padding-bottom: var(--jumbotron-padding-y);
+        margin-bottom: 0;
+        background-color: #fff;
+    }
+
+    @media (min-width: 768px) {
+        .jumbotron {
+            padding-top: calc(var(--jumbotron-padding-y) * 2);
+            padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+        }
+    }
+
+    .jumbotron p:last-child {
+        margin-bottom: 0;
+    }
+
+    .jumbotron-heading {
+        font-weight: 300;
+    }
+
+    .jumbotron .container {
+        max-width: 40rem;
+    }
+
+    footer {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    footer p {
+        margin-bottom: .25rem;
+    }
+
+    .box-shadow {
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    }
+    </style>
+{% endblock styles %}
+
+{% block content %}
+    <main role='main'>
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">About Us</h1>
+            </div>
+        </section>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    {% for user in users  %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="{{ user.imageUrl }}"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h2>{{ user.name }}</h2>
+                                <p class="card-text">
+                                    Well we're movin' on up to the east side to a deluxe apartment in the sky. All of
+                                    them had hair of gold like their mother the youngest one in curls. Now the world
+                                    don't move to the beat of just one drum. What might be right for you may not be
+                                    right for some?" And if you threw a party - invited everyone you knew. You would see
+                                    the biggest gift would be from me and the card attached would say thank you for
+                                    being a friend. The movie star the professor and Mary Ann here on Gilligans Isle.
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4>Email: <small class="text-muted">{{ user.email }}</small></h4>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+   
+    
+{% endblock content %}

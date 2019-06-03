@@ -15,59 +15,12 @@
     </script>
     <style>
         body {
-            padding-top: 70px;
+            padding-top: 160px;
         }
 
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-align: center;
-            align-items: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #f5f5f5;
-        }
-
-        .form-signin {
-            width: 100%;
-            max-width: 330px;
-            padding: 15px;
-            margin: auto;
-        }
-
-        .form-signin .checkbox {
-            font-weight: 400;
-        }
-
-        .form-signin .form-control {
-            position: relative;
-            box-sizing: border-box;
-            height: auto;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
+        
     </style>
+    {% block styles %}{% endblock styles %}
 </head>
 
 <body>
@@ -84,17 +37,18 @@
                 </li>
                 
                 {% if not user  %}
-                    <li class="nav-item"><a href="/signup" class="nav-link text-white">Sign Up</a></li>
+                    {# <li class="nav-item"><a href="/signup" class="nav-link text-white">Sign Up</a></li> #}
                     <li class="nav-item"><a href="/login" class="nav-link text-white">Log In</a></li>
                 {% else %}
                     <li class="nav-item"><a href="/logout" class="nav-link text-white">Logout</a></li>
                 {% endif %}
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="/about" class="nav-link text-white">About Us</a></li> 
+            </ul>
         </div>
     </nav>
-    <div class="container">
-        {% block content %}{% endblock content %}
-    </div>
+    {% block content %}{% endblock content %}
 </body>
 
 </html>

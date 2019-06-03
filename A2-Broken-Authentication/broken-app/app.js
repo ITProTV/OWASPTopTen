@@ -53,22 +53,26 @@ app.use((req, res, next) => {
 
 //Routes
 app.get('/', (req, res) => res.render('index.nj'))
+app.get('/about', (req, res) => {
+  const users = require('./users') 
+  res.render('about.nj', { users })
+})
 app.get('/secrets', (req, res) => {
   if (req.isAuthenticated()) return res.render('secrets.nj')
   return res.redirect('/login')
 })
-app.get('/signup', (req, res) => res.render('signup.nj'))
+// app.get('/signup', (req, res) => res.render('signup.nj'))
 app.get('/login', (req, res) => res.render('login.nj'))
-app.post('/signup', async (req, res) => {
-  const { email, password } = req.body
-  const user = Users.create(email, password)
-  try {
-    await Users.save(user)
-    res.redirect('/login')
-  } catch (error) {
-    res.redirect('/signup')
-  }
-})
+// app.post('/signup', async (req, res) => {
+//   const { email, password } = req.body
+//   const user = Users.create(email, password)
+//   try {
+//     await Users.save(user)
+//     res.redirect('/login')
+//   } catch (error) {
+//     res.redirect('/signup')
+//   }
+// })
 app.post(
   '/login',
   passport.authenticate('local', {
@@ -77,7 +81,7 @@ app.post(
   })
 )
 app.get('/logout', (req, res) => {
-  if(req.session) req.session.destroy()
+  if (req.session) req.session.destroy()
   res.redirect('/')
 })
 

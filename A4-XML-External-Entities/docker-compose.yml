@@ -1,0 +1,15 @@
+version: "3.0"
+
+services:
+  app:
+    image: fauria/lamp
+    volumes:
+      - ./example:/var/www/html/
+      # - ./apache-config:/etc/apache2
+      - ./logs:/var/log/httpd
+    environment: 
+      LOG_STDERR: "true"
+      LOG_STDOUT: "true"
+      LOG_LEVEL: "debug"
+    ports: 
+      - "8080:80"

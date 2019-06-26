@@ -1,0 +1,16 @@
+{% extends "layout.nj" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <div class="jumbotron">
+            <h1 class="mt-5">My Snippets</h1>
+        </div>
+        <ul>
+            {% for snippet in snippets %}
+                <li>{{ snippet.command }}</li> 
+            {% endfor %} 
+        </ul>
+    </div>
+</div>
+{% endblock content %}

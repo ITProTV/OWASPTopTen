@@ -1,0 +1,12 @@
+{% extends "layout.nj" %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welcome</h1>
+        <p class="lead">Are you ready to look at your companies secrets?</p>
+        <a href="/secrets">Take a look...</a>
+    </div>
+</div>
+
+{% endblock content %}

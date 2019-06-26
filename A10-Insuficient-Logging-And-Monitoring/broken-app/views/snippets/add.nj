@@ -1,0 +1,22 @@
+{% extends "layout.nj" %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center flex-column flex-grow-1">
+    <div class="col-md-9 col-lg-8 mx-auto">
+        <h3 class="login-heading mb-4">What is your snippet?</h3>
+        <form action="/snippets" method="POST">
+            <div class="form-group">
+                <textarea id="command" name="command" class="form-control" placeholder="Command" required autofocus></textarea>
+            </div>
+
+            <div class="form-group">
+                <textarea rows="20" id="description" name="description" class="form-control" placeholder="Description" required></textarea>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                type="submit">Log in</button>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

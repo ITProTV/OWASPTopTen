@@ -116,12 +116,10 @@ app.post('/register', (req, res, next) => {
       hash
     })
     .then(([user_id]) => {
-      console.log({ user_id })
       return db('roles').insert({ type: 'user', user_id })
     })
     .then(
       roles => {
-        console.log({ roles })
         res.redirect('/login')
       },
       err => next(err)
@@ -157,7 +155,6 @@ app.get('/modify/:userId', (req, res, next) => {
     .first()
     .then(
       account => {
-        console.log(account, res.locals.user)
         res.render('modify', { account })
       },
       err => next(err)
@@ -173,7 +170,6 @@ app.put('/modify/:userId', (req, res, next) => {
   if (body['role']) userRole.update({ type: body['role'] })
   Promise.all([user, userRole]).then(
     ([user, role]) => {
-      console.log({ user, role })
       res.redirect(`/modify/${req.params.userId}`)
     },
     err => next(err)

@@ -5,7 +5,7 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Update Profile</div>
         <div class="card-body">
-            <form method="POST">
+            <form method="POST" id='modify-form'>
                 <input type="hidden" name="_method" value="PUT" />
                 <div class="form-group">
                     <div class="form-label-group">
@@ -34,11 +34,12 @@
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <select class='form-control' name="role" id="role" disabled>
+                        <select class='form-control' name="role" id="role" disabled form='modify-form'>
                             <option value="admin" {% if account.role === 'admin' %}selected{% endif %}>Admin</option>
                             <option value="user" {% if account.role === 'user' %}selected{% endif %}>User</option>
                         </select>
                     </div>
+                    <input type="hidden" name='role' value="{{ account.role }}" />
                 </div>
                 </pre>
                 <button type='submit' {% if user.id !== account.id and user.role !== 'admin' %}disabled{%endif%} class="btn btn-primary btn-block">

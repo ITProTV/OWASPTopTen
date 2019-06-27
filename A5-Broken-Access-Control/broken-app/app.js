@@ -8,6 +8,7 @@ const session = require('express-session')
 const passport = require('passport')
 const { Strategy: LocalStrategy } = require('passport-local')
 const { pbkdf2Sync, randomBytes } = require('crypto')
+const methodOverride = require('method-override')
 
 const db = require('./db')
 
@@ -29,6 +30,15 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {}
+  })
+)
+app.use(
+  methodOverride(function(req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      var method = req.body._method
+      delete req.body._method
+      return method
+    }
   })
 )
 passport.use(
@@ -76,6 +86,7 @@ app.use((req, res, next) => {
   const { user } = req
   res.locals.user = user
     ? {
+        id: user.id,
         first_name: user.first_name,
         last_name: user.last_name,
         role: user.role,
@@ -144,7 +155,13 @@ app.get('/modify/:userId', (req, res, next) => {
     })
     .select('*', db.ref('type').as('role'))
     .first()
-    .then(account => res.render('modify', { account }), err => next(err))
+    .then(
+      account => {
+        console.log(account, res.locals.user)
+        res.render('modify', { account })
+      },
+      err => next(err)
+    )
 })
 app.put('/modify/:userId', (req, res, next) => {
   const { body } = req

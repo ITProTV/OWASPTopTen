@@ -5,18 +5,20 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Update Profile</div>
         <div class="card-body">
-            <form>
+            <form method="POST">
+                <input type="hidden" name="_method" value="PUT" />
                 <div class="form-group">
                     <div class="form-label-group">
                         <input type="email" id="email" name='email' class="form-control" value="{{ account.email }}"
-                            {% if user.role !== 'admin' %}disabled{% endif %} />
+                            {% if user.id !== account.id and user.role !== 'admin' %}disabled{% endif %} />
                         <label for="email">Email address</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
                         <input type="text" id="first-name" name='first-name' class="form-control"
-                            value="{{ account.first_name }}" {% if user.role !== 'admin' %}disabled{% endif %}
+                            value="{{ account.first_name }}" 
+                            {% if user.id !== account.id and user.role !== 'admin'%}disabled{% endif %}
                             autofocus="autofocus" />
                         <label for="first-name">First Name</label>
                     </div>
@@ -24,7 +26,8 @@
                 <div class="form-group">
                     <div class="form-label-group">
                         <input type="last-name" id="last-name" name='last-name' class="form-control"
-                            value="{{ account.last_name }}" {% if user.role !== 'admin' %}disabled{% endif %}
+                            value="{{ account.last_name }}" 
+                            {% if user.id !== account.id and user.role !== 'admin' %}disabled{% endif %}
                             autofocus="autofocus" />
                         <label for="last-name">Last Name</label>
                     </div>
@@ -32,15 +35,13 @@
                 <div class="form-group">
                     <div class="form-label-group">
                         <select class='form-control' name="role" id="role" disabled>
-                            {% if user.role === 'admin' %}
                             <option value="admin" {% if account.role === 'admin' %}selected{% endif %}>Admin</option>
-                            {% endif %}
                             <option value="user" {% if account.role === 'user' %}selected{% endif %}>User</option>
                         </select>
                     </div>
                 </div>
                 </pre>
-                <button type='submit' {% if user.role !== 'admin'%}disabled{%endif%} class="btn btn-primary btn-block">
+                <button type='submit' {% if user.id !== account.id and user.role !== 'admin' %}disabled{%endif%} class="btn btn-primary btn-block">
                     Save
                 </button>
             </form>

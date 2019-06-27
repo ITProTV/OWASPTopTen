@@ -164,11 +164,13 @@ app.put('/modify/:userId', (req, res, next) => {
   const { body } = req
   const user = db('users').where({ 'users.id': req.params.userId })
   const userRole = db('roles').where({ 'roles.user_id': req.params.userId })
-  if (body['first-name']) user.update({ first_name: body['first-name'] })
-  if (body['last-name']) user.update({ last_name: body['last-name'] })
-  if (body['email']) user.update({ email: body['email'] })
-  if (body['role']) userRole.update({ type: body['role'] })
-  Promise.all([user, userRole]).then(
+  const updates = {}
+  const roleUpdates = {}
+  if (body['first-name']) updates.first_name = body['first-name']
+  if (body['last-name']) updates.last_name = body['last-name']
+  if (body['email']) updates.email = body['email']
+  if (body['role']) roleUpdates.type = body['role']
+  Promise.all([user.update(updates), userRole.update(roleUpdates)]).then(
     ([user, role]) => {
       res.redirect(`/modify/${req.params.userId}`)
     },

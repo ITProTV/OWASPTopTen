@@ -41,6 +41,7 @@ app.use(
     }
   })
 )
+
 passport.use(
   new LocalStrategy(
     { usernameField: 'email', passwordField: 'password' },
@@ -96,6 +97,15 @@ app.use((req, res, next) => {
   next()
 })
 
+function isAdmin(req, res, next) {
+  if(req.user && req.user.roles === 'admin') return next()
+  return res.redirect('/login') 
+}
+function checkAuth(req, res, next) {
+  if(req.isAuthenticated && req.isAuthenticated()) return next()
+  return res.redirect('/login')
+}
+
 app.get('/', (req, res) => res.render('index'))
 app.get('/register', (req, res) => res.render('register'))
 app.post('/register', (req, res, next) => {
@@ -137,7 +147,7 @@ app.get('/logout', (req, res) => {
   if (req.session) req.session.destroy()
   res.redirect('/')
 })
-app.get('/users', (req, res, next) => {
+app.get('/users', checkAuth, (req, res, next) => {
   db('users')
     .join('roles', function() {
       this.on('users.id', '=', 'roles.user_id')
@@ -145,7 +155,7 @@ app.get('/users', (req, res, next) => {
     .select('*', db.ref('type').as('role'))
     .then(users => res.render('users', { users }), err => next(err))
 })
-app.get('/modify/:userId', (req, res, next) => {
+app.get('/modify/:userId', checkAuth, (req, res, next) => {
   db('users')
     .where({ 'users.id': req.params.userId })
     .join('roles', function() {
@@ -160,7 +170,7 @@ app.get('/modify/:userId', (req, res, next) => {
       err => next(err)
     )
 })
-app.put('/modify/:userId', (req, res, next) => {
+app.put('/modify/:userId', checkAuth, isAdmin, (req, res, next) => {
   const { body } = req
   const user = db('users').where({ 'users.id': req.params.userId })
   const userRole = db('roles').where({ 'roles.user_id': req.params.userId })

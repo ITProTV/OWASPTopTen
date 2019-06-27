@@ -3,6 +3,8 @@ const app = express()
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
+const requestLogger = require('morgan')
+const logger = require('./logger')
 const { Strategy: LocalStrategy } = require('passport-local')
 
 const nunjucks = require('nunjucks')
@@ -14,6 +16,7 @@ const db = require('./db')({
   directory: 'db'
 })
 const { Users } = require('./utils')
+app.use(requestLogger('combined'))
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -75,6 +78,11 @@ app.get('/login', (req, res) => res.render('login.nj'))
 // })
 app.post(
   '/login',
+  function logLogins(req, res, next) {
+    const { body } = req
+    logger.info('Logging in with', body)
+    next()
+  },
   passport.authenticate('local', {
     failureRedirect: '/login',
     successRedirect: '/secrets'

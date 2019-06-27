@@ -1,12 +1,12 @@
 {% extends "layout.nj" %}
+
 {% block content %}
-<div class="container-fluid">
+ <div class="container-fluid">
   <!-- Page Content -->
-  <h1 class="display-1">404</h1>
-  <p class="lead">Page not found. You can
+  <h1 class="display-1">Server Error</h1>
+  <p class="lead">Server has encountered an error. You can
     <a href="javascript:history.back()">go back</a>
     to the previous page, or
     <a href="/">return home</a>.</p>
 </div>
-<!-- /.container-fluid -->
 {% endblock content %}

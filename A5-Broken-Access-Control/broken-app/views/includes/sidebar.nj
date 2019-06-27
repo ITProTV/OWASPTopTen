@@ -1,12 +1,12 @@
 <!-- Sidebar -->
 <ul class="sidebar navbar-nav">
+    {% if user %}
     <li class="nav-item active">
-        <a class="nav-link" href="/">
+        <a class="nav-link" href="/users">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
     </li>
-    {% if user %}
-    <li class="nav-item"><a href="/users" class="nav-link">Users</a></li>
     {% endif %}
+
 </ul>
